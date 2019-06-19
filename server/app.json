@@ -1,0 +1,7 @@
+{
+    "webservice":{
+        "ip":"http://192.168.0.189",
+        "port":"7722",
+        "wsdl":"MITSVIWebService/MITSVIWebService?wsdl"
+    }
+}

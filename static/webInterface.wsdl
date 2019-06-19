@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="doRequest"
+  targetNamespace="urn:doRequest"
+  xmlns:tns="urn:doRequest"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="urn:doRequest"
+  xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:HTTP="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+  xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+  <schema targetNamespace="urn:doRequest"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns="urn:doRequest"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified">
+    <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </schema>
+
+</types>
+
+<message name="patrolRequest">
+  <part name="data" type="xsd:string"/><!-- ns__testStdString::a -->
+</message>
+
+<message name="patrolResponse">
+  <part name="result" type="xsd:string"/><!-- ns__testStdString::result -->
+</message>
+
+<portType name="doRequestPortType">
+  <operation name="patrol">
+    <documentation>Service definition of function ns__patrol</documentation>
+    <input message="tns:patrolRequest"/>
+    <output message="tns:patrolResponse"/>
+  </operation>
+</portType>
+
+<binding name="doRequest" type="tns:doRequestPortType">
+  <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="patrol">
+    <SOAP:operation style="rpc" soapAction=""/>
+    <input>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:doRequest"/>
+    </input>
+    <output>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:doRequest"/>
+    </output>
+  </operation>
+</binding>
+
+<service name="doRequest">
+  <documentation>
+    Simple doRequest service described at https://www.genivia.com/dev.html
+  </documentation>
+  <port name="doRequest" binding="tns:doRequest">
+    <SOAP:address location="http://127.0.0.1:8285/doRequest/"/>
+  </port>
+</service>
+
+</definitions>
